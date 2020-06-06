@@ -1,4 +1,4 @@
-public class LamportMutex extends Process implements Lock {
+public class LamportMutex extends BCastProcess implements Lock {
     DirectClock v;
     int[] q; // request queue
 

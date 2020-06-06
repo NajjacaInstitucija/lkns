@@ -8,7 +8,7 @@ public class BCastLockTester {
             String baseName = args[0];
             int myId = Integer.parseInt(args[1]);
             int numProc = Integer.parseInt(args[2]);
-            comm = new Linker(baseName, myId, numProc);
+            comm = new BCastLinker(baseName, myId, numProc);
 
             LamportMutex lock = new LamportMutex(comm);
 

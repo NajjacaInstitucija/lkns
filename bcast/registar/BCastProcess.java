@@ -1,7 +1,7 @@
 import java.io.*; import java.lang.*;
 public class BCastProcess implements MsgHandler {
     int N, myId;
-    Linker comm;
+    BCastLinker comm;
     public BCastProcess(BCastLinker initComm) {
         comm = initComm;
         myId = comm.getMyId();
