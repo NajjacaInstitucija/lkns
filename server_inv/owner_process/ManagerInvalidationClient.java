@@ -5,7 +5,8 @@ public class ManagerInvalidationClient {
     BufferedReader din;
     PrintStream pout;
     int registar;
-    int isCurrent;
+    //int isCurrent;
+    boolean isCurrent;
     boolean isOwner;
     int owner;
 
@@ -14,7 +15,8 @@ public class ManagerInvalidationClient {
     {
        registar = 0;
        owner = 0;
-       isCurrent = 0;
+       //isCurrent = 0;
+       isCurrent = false;
        isOwner = false;
     }
 
@@ -99,9 +101,11 @@ public class ManagerInvalidationClient {
       public int getRegistar() { return registar; }
       public void setRegistar(int val) { registar = val; }
 
-      public int getIsCurrent() { return isCurrent; }
-      public void setIsCurrent(int val) { isCurrent = val; }
-      //current bi trebala bit lista
+      // public int getIsCurrent() { return isCurrent; }
+      // public void setIsCurrent(int val) { isCurrent = val; }
+
+      public boolean getIsCurrent() { return isCurrent; }
+      public void setIsCurrent(boolean val) { isCurrent = val; }
 
       // public boolean getIsOwner() { return isOwner; }
       // public void setIsOwner(boolean val) { isOwner = val; }

@@ -33,6 +33,7 @@ public class ManagerLockTester {
                   int val = Integer.parseInt(st.nextToken());
 
                   comm.writeMyRegistar(val);
+                  lock.broadcastMsg("invalidate", comm.getMyId());
 
                   if(comm.getMyOwnerInt() != comm.getMyId())
                   {
@@ -41,8 +42,8 @@ public class ManagerLockTester {
                     Util.mySleep(1000);
                     // lock.sendMsg(comm.getMyOwnerInt(), "downgrade", comm.getMyId());
                     comm.setMyOwnerInt(comm.getMyId());
-                    comm.setMyCurrent(comm.getMyId());
-                    lock.broadcastMsg("invalidate", comm.getMyId());
+                    //comm.setMyCurrent(comm.getMyId());
+                    comm.setMyCurrent(true);
                   }
 
                   System.out.println(" Write success. ");
@@ -56,19 +57,36 @@ public class ManagerLockTester {
                   System.out.println(myId + " is in CS *****");
 
 
+                  // if(comm.getMyId() != comm.getMyOwnerInt())
+                  // {
+                  //
+                  //   System.out.println(" Loading registar from server... ");
+                  //
+                  //   lock.sendMsg(comm.getMyOwnerInt(), "downgrade", comm.getMyId());
+                  //   lock.broadcastMsg("invalidate", comm.getMyId());
+                  //   Util.mySleep(1000);
+                  //   comm.setMyOwnerInt(comm.getMyId());
+                  //
+                  //   int novi = comm.readRegistar();
+                  //   comm.writeMyRegistar(novi);
+                  //   comm.setMyCurrent(comm.getMyId());
+                  //
+                  // }
+
                   if(comm.getMyId() != comm.getMyOwnerInt())
                   {
-
-                    System.out.println(" Loading registar from server... ");
-
                     lock.sendMsg(comm.getMyOwnerInt(), "downgrade", comm.getMyId());
-                    lock.broadcastMsg("invalidate", comm.getMyId());
                     Util.mySleep(1000);
                     comm.setMyOwnerInt(comm.getMyId());
 
-                    int novi = comm.readRegistar();
-                    comm.writeMyRegistar(novi);
-                    comm.setMyCurrent(comm.getMyId());
+                    if(!comm.getMyCurrent())
+                    {
+                      System.out.println(" Loading registar from server... ");
+                      int novi = comm.readRegistar();
+                      comm.writeMyRegistar(novi);
+                      comm.setMyCurrent(true);
+                      Util.mySleep(Symbols.roundTime);
+                    }
 
                   }
 

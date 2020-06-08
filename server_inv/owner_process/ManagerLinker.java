@@ -66,7 +66,8 @@ public class ManagerLinker {
         else if(tag.equals("invalidate"))
           {
             int novi = Integer.parseInt(msg.trim());
-            setMyCurrent(novi);
+            //setMyCurrent(novi);
+            setMyCurrent(false);
             setMyOwnerInt(novi);
 
             Util.println(" Registar invalidated. ");
@@ -75,6 +76,7 @@ public class ManagerLinker {
        else if(tag.equals("downgrade"))
        {
 
+         Util.println(" Saving to server ... ");
          writeRegistar(readMyRegistar());
          Util.mySleep(2000);
          setMyOwnerInt(Integer.parseInt(msg.trim()));
@@ -152,19 +154,33 @@ public class ManagerLinker {
       ManagerInvalidationClient client = connector.getClient();
       client.setRegistar(val);
     }
+    //
+    // public boolean getMyCurrent()
+    // {
+    //   ManagerInvalidationClient client = connector.getClient();
+    //   if (client.getIsCurrent() != myId) return false;
+    //   return true;
+    // }
+    //
+    // public void setMyCurrent(int val)
+    // {
+    //   ManagerInvalidationClient client = connector.getClient();
+    //   client.setIsCurrent(val);
+    // }
 
     public boolean getMyCurrent()
     {
       ManagerInvalidationClient client = connector.getClient();
-      if (client.getIsCurrent() != myId) return false;
-      return true;
+      return client.getIsCurrent();
     }
 
-    public void setMyCurrent(int val)
+    public void setMyCurrent(boolean val)
     {
       ManagerInvalidationClient client = connector.getClient();
       client.setIsCurrent(val);
     }
+
+
 
     public void setMyOwnerInt(int val)
     {
