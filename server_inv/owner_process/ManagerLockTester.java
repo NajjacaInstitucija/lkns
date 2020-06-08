@@ -36,8 +36,8 @@ public class ManagerLockTester {
 
                   if(comm.getMyOwnerInt() != comm.getMyId())
                   {
-                    System.out.println(" Saving to server ...");
-                    comm.writeRegistar(val);
+                    //System.out.println(" Saving to server ...");
+                    //comm.writeRegistar(val);
                     Util.mySleep(1000);
                     // lock.sendMsg(comm.getMyOwnerInt(), "downgrade", comm.getMyId());
                     comm.setMyOwnerInt(comm.getMyId());
